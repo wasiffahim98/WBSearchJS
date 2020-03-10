@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      WB Web Entites
+    </title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+  </head>
+  <body>
+    <h1>Warner Brothers Wiki Entities</h1>
+    Enter search word: <input id="userinput" value="batman" />
+    <div class="mypanel"></div>
+<!--
+    <button onclick="location.href='{% url 'script' %}'">Search</button><hr>
+
+    <input type="button" id="myBtn" value="Volvo">
+    <p>Click the button below to change the text displayed on the input button above.</p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+      function myFunction() {
+        document.getElementById("myBtn").value = "BMW";
+      }
+    </script>
+--->
+    <button onclick="getText()">Search</button>
+
+    <script>
+        function getText(){
+          var word = document.getElementById('userinput').value
+          console.log(word)
+          url = "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=" + word + "&language=en&limit=10&format=json"
+          console.log(url);
+          bat = $.getJSON(url, function(data) {});
+          console.log(bat)
+          // var jQuery = 'jQuery';
+          // require([jQuery], function(result){
+          //   jQuery = result;
+          //   });
+          // jQuery.writeFile("data.json", bat);
+          var fh = fopen("data.json", 3);
+          fwrite(fh, bat);
+          fclose(fh)
+        }
+    </script>
+  </body>
+</html>
